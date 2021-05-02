@@ -45,3 +45,7 @@ let custom = function () {
 let brushSize = function (val) {
     value = parseInt(val) * 5
 }
+
+let clrscr = function() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}

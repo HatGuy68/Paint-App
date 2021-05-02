@@ -1,5 +1,6 @@
 html, body, * {
     margin: 0px;
+    overflow: hidden;
 }
 
 .container {
@@ -34,15 +35,20 @@ button {
     cursor: pointer;
 }
 
-#custom{
+#custom {
     background: url("/Colorwheel.svg") no-repeat;
 }
 
-#eraser{
+#eraser {
     width: 25px;
     background: url("/eraser.svg") no-repeat;
     background-position: center;
     margin-left: 4px;
+}
+
+#clrscr {
+    background: url("/trash.svg") no-repeat;
+    background-position: center;
 }
 
 canvas {
