@@ -6,6 +6,7 @@ console.log(window.innerWidth)
 let width = canvas.width = window.innerWidth - 35;
 let height = canvas.height = window.innerHeight - 2;
 let pressing = false;
+let value = 10;
 
 window.addEventListener('resize', () => {
     width = canvas.width = window.innerWidth - 35;
@@ -13,7 +14,7 @@ window.addEventListener('resize', () => {
 })
 
 canvas.addEventListener('mousedown', (e) => {
-    draw(e.x, e.y);
+    draw(e.x, e.y, value);
     pressing = true;
 })
 
@@ -22,12 +23,12 @@ canvas.addEventListener('mouseup', e => {
 })
 
 canvas.addEventListener('mousemove', (event) => {
-    if (pressing == true) draw(event.x, event.y);
+    if (pressing == true) draw(event.x, event.y, value);
 })
 
-let draw = function (x, y) {
+let draw = function (x, y, value) {
     ctx.beginPath();
-    ctx.arc(x - 35, y - 2, 10, 0, Math.PI * 2);
+    ctx.arc(x - 35, y - 2, value, 0, Math.PI * 2);
     ctx.fill();
 }
 
@@ -39,4 +40,8 @@ let color = function (c) {
 let custom = function () {
     let customColor = prompt('Custom Color: ');
     ctx.fillStyle = customColor;
+}
+
+let brushSize = function (val) {
+    value = parseInt(val) * 5
 }
