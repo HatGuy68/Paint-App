@@ -1,0 +1,38 @@
+html, body, * {
+    margin: 0px;
+}
+
+.container {
+    display: flex;
+}
+
+.colors {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 35px;
+    height: 100vh;
+}
+
+button {
+    margin: 1px 0;
+    height: 35px;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+}
+
+#custom{
+    background: url("/Colorwheel.svg") no-repeat;
+}
+
+#eraser{
+    width: 25px;
+    background: url("/eraser.svg") no-repeat;
+    background-position: center;
+    margin-left: 4px;
+}
+
+canvas {
+    border: 1px solid black;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Paint</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="colors">
+            <button id="eraser" onclick="color('#FFFFFF')"></button>
+            <button id="red" onclick="color('#FF0000')" style="background: #FF0000"></button>
+            <button id="orange" onclick="color('#FF8000')" style="background: #FF8000"></button>
+            <button id="yellow" onclick="color('#FFFF00')" style="background: #FFFF00"></button>
+            <button id="lightGreen" onclick="color('#80FF00')" style="background: #80FF00"></button>
+            <button id="green" onclick="color('#00FF00')" style="background: #00FF00"></button>
+            <button id="aqua" onclick="color('#00FF80')" style="background: #00FF80"></button>
+            <button id="cyan" onclick="color('#00FFFF')" style="background: #00FFFF"></button>
+            <button id="azure" onclick="color('#0080FF')" style="background: #0080FF"></button>
+            <button id="blue" onclick="color('#0000FF')" style="background: #0000FF"></button>
+            <button id="Voilet" onclick="color('#8000FF')" style="background: #8000FF"></button>
+            <button id="magenta" onclick="color('#FF00FF')" style="background: #FF00FF"></button>
+            <button id="brightPink" onclick="color('#FF0080')" style="background: #FF0080"></button>
+            <button id="black" onclick="color('#000000')" style="background: #000000"></button>
+            <button id="custom" onclick="custom()"></button>
+        </div>
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
