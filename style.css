@@ -78,20 +78,26 @@ button {
 
 #custom {
     margin: 10px auto;
-    background: url("/assets/Colorwheel.svg") no-repeat;
+    background: url("./assets/Colorwheel.svg") no-repeat;
     background-position: center;
     height: 32px;
 }
 
 #eraser {
     margin: 10px auto;
-    background: url("/assets/eraser.svg") no-repeat;
+    background: url("./assets/eraser.svg") no-repeat;
     background-position: center;
 }
 
 #clrscr {
     margin: 10px auto;
-    background: url("/assets/trash.svg") no-repeat;
+    background: url("./assets/trash.svg") no-repeat;
+    background-position: center;
+}
+
+#inspector {
+    margin: 10px auto;
+    background: url("./assets/inspector.svg") no-repeat;
     background-position: center;
 }
 

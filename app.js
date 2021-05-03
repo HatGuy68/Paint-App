@@ -2,6 +2,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext('2d');
 const defaultFile = document.getElementById("default-file");
 const upload = document.getElementById("upload");
+let inspectorElement = document.getElementById("inspector");
 
 console.log(window.innerWidth)
 
@@ -9,6 +10,17 @@ let width = canvas.width = window.innerWidth - 35;
 let height = canvas.height = window.innerHeight - 2;
 let pressing = false;
 let value = 10;
+let inspector = false;
+
+let imageData = ctx.getImageData(0, 0, width, height);
+
+// Inspector
+
+let toggleInspector = function () {
+    inspector = (inspector ? false : true);
+    inspectorElement.style.backgroundColor = (inspector ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0)')
+    console.log('inspector: ', inspector);
+}
 
 // Event Listeners
 
@@ -18,8 +30,12 @@ window.addEventListener('resize', () => {
 })
 
 canvas.addEventListener('mousedown', (e) => {
-    draw(e.x, e.y, value);
-    pressing = true;
+    if (inspector) {
+        checkColor(e);
+    } else {
+        draw(e.x, e.y, value);
+        pressing = true;
+    }
 })
 
 canvas.addEventListener('mouseup', e => {
@@ -36,6 +52,7 @@ let draw = function (x, y, value) {
     ctx.beginPath();
     ctx.arc(x - 35, y - 2, value, 0, Math.PI * 2);
     ctx.fill();
+    imageData = ctx.getImageData(0, 0, width, height);
 }
 
 // Color Selectors
@@ -49,6 +66,18 @@ let color = function (c) {
 let custom = function () {
     let customColor = prompt('Custom Color: ');
     ctx.fillStyle = customColor;
+}
+
+let checkColor = function (event) {
+    let x = event.x - 50;
+    let y = event.y - 2;
+    let pixelColor = [];
+    imageData = ctx.getImageData(0, 0, width, height);
+    pixelColor['red'] = imageData.data[((y*(imageData.width*4)) + (x*4)) + 0];
+    pixelColor['green'] = imageData.data[((y*(imageData.width*4)) + (x*4)) + 1];
+    pixelColor['blue'] = imageData.data[((y*(imageData.width*4)) + (x*4)) + 2];
+    pixelColor['alpha'] = imageData.data[((y*(imageData.width*4)) + (x*4)) + 3];
+    console.log(pixelColor);
 }
 
 // Operations
@@ -75,7 +104,7 @@ function downloadCanvas(link, filename) {
 let openImage = function(path) {
     const img = new Image();
     img.src = path;
-    img.onload = () => { ctx.drawImage(img, 0, 0, width, height);};
+    img.onload = () => { ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight);};
     console.log('open');
 }
 
@@ -92,7 +121,6 @@ defaultFile.addEventListener("change", function () {
     fileReader.addEventListener("load", function () {
       // convert image to base64 encoded string
       openImage(this.result);
-      console.log(this.result);
     });
   }
 });
