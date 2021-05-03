@@ -20,6 +20,26 @@ html, body, * {
     align-items: center;
 }
 
+input[type="radio"] {
+    margin: 1px;
+}
+
+.save {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 18px;
+    padding: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.save:hover {
+    background: black;
+    color: white;
+}
+
 .colors {
     display: flex;
     flex-direction: column;

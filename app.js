@@ -49,3 +49,8 @@ let brushSize = function (val) {
 let clrscr = function() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
+
+function downloadCanvas(link, filename) {
+    link.href = canvas.toDataURL();
+    link.download = filename;
+}
