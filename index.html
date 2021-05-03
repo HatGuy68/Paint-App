@@ -19,7 +19,7 @@
                 <input type="radio" name="size" id="3" onclick="brushSize('3')">
             </div>
             <div class="colors">
-                <button id="eraser" onclick="color('#FFFFFF')"></button>
+                <button id="eraser" onclick="clr()"></button>
                 <button id="clrscr" onclick="clrscr()"></button>
                 <div class="colors-panel">
                     <div class="left">
@@ -46,6 +46,8 @@
         <canvas id="canvas"></canvas>
     </div>
     <a class="save" id="download" onclick="downloadCanvas(this, 'canvas', 'test.png');"><i class="fa fa-save"></i> Save</a>
+    <a class="open" id="upload" onclick="defaultFile.click();"><i class="fa fa-upload"></i> Open</a>
+    <input type="file" id="default-file" hidden />
 
     <script src="app.js"></script>
 </body>
