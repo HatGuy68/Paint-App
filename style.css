@@ -10,7 +10,7 @@ html, body, * {
 .panel {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     height: 100vh;
 }
 
@@ -23,31 +23,39 @@ html, body, * {
 .colors {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 35px;
+    justify-content: space-between;
+    align-items: center;
+    width: 50px;
+}
+
+.colors-panel {
+    display: flex;
 }
 
 button {
-    margin: 1px 0;
-    height: 32px;
+    margin: 1px;
+    height: 25px;
     border: none;
     width: 100%;
     cursor: pointer;
 }
 
 #custom {
-    background: url("/Colorwheel.svg") no-repeat;
+    margin: 10px auto;
+    background: url("/assets/Colorwheel.svg") no-repeat;
+    background-position: center;
+    height: 32px;
 }
 
 #eraser {
-    width: 25px;
-    background: url("/eraser.svg") no-repeat;
+    margin: 10px auto;
+    background: url("/assets/eraser.svg") no-repeat;
     background-position: center;
-    margin-left: 4px;
 }
 
 #clrscr {
-    background: url("/trash.svg") no-repeat;
+    margin: 10px auto;
+    background: url("/assets/trash.svg") no-repeat;
     background-position: center;
 }
 
