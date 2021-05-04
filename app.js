@@ -3,12 +3,14 @@ const ctx = canvas.getContext('2d');
 const defaultFile = document.getElementById("default-file");
 const upload = document.getElementById("upload");
 let inspectorElement = document.getElementById("inspector");
+let bucketElement = document.getElementById("bucket");
 
 console.log(window.innerWidth)
 
 let width = canvas.width = window.innerWidth - 35;
 let height = canvas.height = window.innerHeight - 2;
 let pressing = false;
+let bucket = false;
 let value = 10;
 let inspector = false;
 
@@ -22,6 +24,14 @@ let toggleInspector = function () {
     console.log('inspector: ', inspector);
 }
 
+//bucket
+
+let toggleBucket = function () {
+    bucket = (bucket ? false : true);
+    bucketElement.style.backgroundColor = (bucket ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0)')
+    console.log('bucket: ', bucket);
+}
+
 // Event Listeners
 
 window.addEventListener('resize', () => {
@@ -32,6 +42,12 @@ window.addEventListener('resize', () => {
 canvas.addEventListener('mousedown', (e) => {
     if (inspector) {
         checkColor(e);
+    } else if (bucket) {
+        ctx.beginPath();
+        ctx.arc(e.x - 1, e.y - 1, 1, 0, Math.PI * 2);
+        ctx.fill();
+        let imgData = ctx.getImageData(e.x - 1, e.y - 1, 1, 1)
+        floodFill(e.x, e.y, imgData);
     } else {
         draw(e.x, e.y, value);
         pressing = true;
@@ -124,3 +140,33 @@ defaultFile.addEventListener("change", function () {
     });
   }
 });
+
+// FloodFill or bucket tool
+
+let floodFill = function ( i, j, imgData) {
+    let rows = width;
+    let cols = height;
+    let seconds = new Date().getTime();
+    
+    oldColor = Array.from(ctx.getImageData(i, j, 1, 1).data).toString();
+    newColor = Array.from(imgData).toString();
+    if (oldColor === newColor) return;
+
+    let que = [];
+    que.push([i,j]);
+
+    while (que.length > 0) {
+        cords = que.shift()
+        i = cords[0], j = cords[1];
+        if ( i < 0 || i >= rows || j < 0 || j >= cols || Array.from(ctx.getImageData(i, j, 1, 1).data).toString() != oldColor) continue;
+        else {
+            ctx.putImageData(imgData, i, j);
+            que.push([i+1 ,j ]);
+            que.push([i-1 ,j ]);
+            que.push([i ,j+1 ]);
+            que.push([i ,j-1 ]);
+        }
+    }
+    seconds = new Date().getTime() - seconds;
+    console.log('Filled in:', seconds,'milli seconds');
+}

@@ -101,6 +101,12 @@ button {
     background-position: center;
 }
 
+#bucket {
+    margin: 10px auto;
+    background: url("./assets/bucket.svg") no-repeat;
+    background-position: center;
+}
+
 canvas {
     border: 1px solid black;
 }
